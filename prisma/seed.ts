@@ -19,6 +19,22 @@ async function main() {
 
   console.log('Superadmin (Gabi) created:', superadmin)
 
+  // Crear superadmin (Rapha)
+  const rapha = await prisma.user.upsert({
+    where: { email: 'rapha.uy@rapha.uy' },
+    update: {
+      role: Role.superadmin,
+    },
+    create: {
+      email: 'rapha.uy@rapha.uy',
+      name: 'Rapha',
+      role: Role.superadmin,
+      isOnboarded: true,
+    },
+  })
+
+  console.log('Superadmin (Rapha) created:', rapha)
+
   // Crear colaborador de ejemplo
   const colaborador = await prisma.user.upsert({
     where: { email: 'colaborador@gabizimmer.com' },
