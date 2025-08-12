@@ -55,11 +55,6 @@ const adminNavItems = [
     badge: "categories"
   },
   {
-    title: "Tags",
-    href: "/admin/tags",
-    icon: Tag
-  },
-  {
     title: "Usuarios",
     href: "/admin/users", 
     icon: Users,
