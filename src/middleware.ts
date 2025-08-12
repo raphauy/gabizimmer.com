@@ -25,9 +25,10 @@ export async function middleware(request: NextRequest) {
   const isLoggedIn = !!token
   const userRole = token?.role as string || ""
 
-  // Public routes (no authentication required) - Landing page is public
+  // Public routes (no authentication required)
   const publicRoutes = ["/login", "/", "/register"]
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname) || 
+                       nextUrl.pathname.startsWith("/blog")
   
   if (isPublicRoute) {
     // Only redirect logged-in users from login page, not from landing
