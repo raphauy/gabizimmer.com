@@ -23,6 +23,9 @@ model User {
   // Relación con tokens OTP
   otpTokens OtpToken[]
   
+  // Relación con posts del blog
+  posts Post[]
+  
   @@map("users")
 }
 
@@ -44,4 +47,109 @@ model OtpToken {
 enum Role {
   superadmin
   colaborador
+}
+
+// Modelos del sistema de blog
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  posts       Post[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  posts     PostTag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("tags")
+}
+
+model Post {
+  id            String      @id @default(cuid())
+  title         String
+  slug          String      @unique
+  content       Json        // Json from novel editor
+  excerpt       String?
+  status        PostStatus  @default(DRAFT)
+  language      Language
+  featuredImageUrl String?
+
+  seoTitle        String?
+  seoDescription  String?
+  
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id])
+  
+  categoryId    String
+  category      Category    @relation(fields: [categoryId], references: [id])
+  
+  tags          PostTag[]
+  comments      Comment[]
+  
+  readingTime   Int?        // Minutos estimados de lectura
+  
+  publishedAt   DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  @@index([slug, language])
+  @@index([status, publishedAt])
+  @@index([authorId])
+  @@index([categoryId])
+  @@map("posts")
+}
+
+model PostTag {
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tagId  String
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  @@id([postId, tagId])
+  @@map("post_tags")
+}
+
+model Comment {
+  id          String        @id @default(cuid())
+  content     String        @db.Text
+  status      CommentStatus @default(PENDING)
+  
+  postId      String
+  post        Post          @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  authorName  String
+  authorEmail String
+  
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  
+  @@index([postId, status])
+  @@map("comments")
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum Language {
+  ES
+  EN
+}
+
+enum CommentStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

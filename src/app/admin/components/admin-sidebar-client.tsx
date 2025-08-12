@@ -22,7 +22,11 @@ import {
   Home,
   Users,
   Settings,
-  Wine,
+  FileText,
+  MessageSquare,
+  FolderOpen,
+  Tag,
+  BookOpen
 } from "lucide-react"
 import Image from "next/image"
 
@@ -31,6 +35,29 @@ const adminNavItems = [
     title: "Dashboard",
     href: "/admin",
     icon: Home
+  },
+  {
+    title: "Posts",
+    href: "/admin/posts",
+    icon: FileText,
+    badge: "posts"
+  },
+  {
+    title: "Comentarios",
+    href: "/admin/comments",
+    icon: MessageSquare,
+    badge: "pendingComments"
+  },
+  {
+    title: "Categorías",
+    href: "/admin/categories",
+    icon: FolderOpen,
+    badge: "categories"
+  },
+  {
+    title: "Tags",
+    href: "/admin/tags",
+    icon: Tag
   },
   {
     title: "Usuarios",
@@ -49,9 +76,19 @@ interface AdminSidebarClientProps {
   children: React.ReactNode
   userCount: number
   colaboradorCount: number
+  categoriesCount: number
+  postsCount?: number
+  pendingCommentsCount?: number
 }
 
-export function AdminSidebarClient({ children, userCount, colaboradorCount }: AdminSidebarClientProps) {
+export function AdminSidebarClient({ 
+  children, 
+  userCount, 
+  colaboradorCount, 
+  categoriesCount,
+  postsCount = 0, 
+  pendingCommentsCount = 0 
+}: AdminSidebarClientProps) {
   const pathname = usePathname()
 
   const getBadgeCount = (badgeType: string) => {
@@ -60,6 +97,12 @@ export function AdminSidebarClient({ children, userCount, colaboradorCount }: Ad
         return userCount
       case "colaboradores":
         return colaboradorCount
+      case "categories":
+        return categoriesCount
+      case "posts":
+        return postsCount
+      case "pendingComments":
+        return pendingCommentsCount
       default:
         return 0
     }
@@ -118,8 +161,19 @@ export function AdminSidebarClient({ children, userCount, colaboradorCount }: Ad
                     tooltip="Ver Sitio de Gabi"
                   >
                     <Link href="/" className="text-purple-600 hover:text-purple-800">
-                      <Wine />
+                      <Home />
                       <span>Ver Sitio</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    tooltip="Ver Blog de Gabi"
+                  >
+                    <Link href="/blog" className="text-wine-accent hover:text-wine-primary">
+                      <BookOpen />
+                      <span>Ver Blog</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

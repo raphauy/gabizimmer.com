@@ -1,0 +1,53 @@
+2025-08-10 14:34:01,700 - INFO - ✅ Directorios de salida creados
+2025-08-10 14:34:01,700 - INFO - 📖 Cargando lista de posts desde: output/todos-los-posts.json
+2025-08-10 14:34:01,700 - INFO - ✅ 46 posts cargados desde JSON
+2025-08-10 14:34:01,700 - INFO - 🎯 Objetivo: Migrar 46 posts
+2025-08-10 14:34:01,700 - INFO - 📁 Directorio de salida: ../docs/resources/migrated-posts
+2025-08-10 14:34:01,728 - INFO - ✅ Conexión a MySQL exitosa
+2025-08-10 14:34:01,728 - INFO - [1/46] Procesando post 5121: Cultura Gastronómica en Latinoamérica: un vehículo de empoderamiento cultural
+2025-08-10 14:34:01,738 - INFO - [2/46] Procesando post 5009: Tim Atkin MW publica su informe especial sobre Uruguay 2023
+2025-08-10 14:34:01,743 - INFO - [3/46] Procesando post 4992: Bodega Garzón lanzó la añada 2020 de su vino ícono Balasto
+2025-08-10 14:34:01,749 - INFO - [4/46] Procesando post 4978: Directo del Viñedo 2023: Fortaleciendo la Vitivinicultura en Latinoamérica
+2025-08-10 14:34:01,753 - INFO - [5/46] Procesando post 4930: Mi experiencia como jurado de vinos en el concurso #CMB2023 en Istria, Croacia
+2025-08-10 14:34:01,763 - INFO - [6/46] Procesando post 4817: Enoturismo: descubre la cultura del vino y cómo elegir la mejor actividad
+2025-08-10 14:34:01,769 - INFO - [7/46] Procesando post 4610: Preludio de Familia Deicas: la magia de un blend uruguayo único
+2025-08-10 14:34:01,776 - INFO - [8/46] Procesando post 4604: Un buen producto o servicio no alcanza
+2025-08-10 14:34:01,780 - INFO - [9/46] Procesando post 4585: Presentación de vinos y nueva imagen de Bodega Garzón
+2025-08-10 14:34:01,807 - INFO - [10/46] Procesando post 4549: Programa Viticultura Sostenible de INAVI
+2025-08-10 14:34:01,814 - INFO - [11/46] Procesando post 4427: Mi propuesta para aumentar las exportaciones de vino uruguayo
+2025-08-10 14:34:01,822 - INFO - [12/46] Procesando post 4149: La Asociación de Turismo Enológico de Uruguay cumple 15 años
+2025-08-10 14:34:01,831 - INFO - [13/46] Procesando post 4131: 16 bodegas uruguayas en Prowein 2022
+2025-08-10 14:34:01,837 - INFO - [14/46] Procesando post 3917: 12 vinos uruguayos para celebrar el Día del Tannat
+2025-08-10 14:34:01,845 - INFO - [15/46] Procesando post 3870: Vinos uruguayos presentes en la Slow Wine Fair 2022
+2025-08-10 14:34:01,851 - INFO - [16/46] Procesando post 3836: Nuevos vinos uruguayos de Viña Edén
+2025-08-10 14:34:01,858 - INFO - [17/46] Procesando post 3820: Los vinos de NTVG
+2025-08-10 14:34:01,865 - INFO - [18/46] Procesando post 3309: Tim Atkin MW publica su informe especial sobre Uruguay 2021
+2025-08-10 14:34:01,870 - INFO - [19/46] Procesando post 3264: Tannat criado en ánfora
+2025-08-10 14:34:01,877 - INFO - [20/46] Procesando post 3196: Cata vertical de Balasto en Bodega Garzón
+2025-08-10 14:34:01,884 - INFO - [21/46] Procesando post 2879: Vinos naturales: definiciones, estilos y reflexiones
+2025-08-10 14:34:01,890 - INFO - [22/46] Procesando post 2825: 3 desafíos y soluciones para comunicar una marca de vinos en el 2020
+2025-08-10 14:34:01,896 - INFO - [23/46] Procesando post 2772: ¡Estreno podcast! Charlas con Vino ya está disponible para escuchar
+2025-08-10 14:34:01,901 - INFO - [24/46] Procesando post 2665: 5 libros para aprender sobre vinos naturales
+2025-08-10 14:34:01,911 - INFO - [25/46] Procesando post 2570: Writing a book about Uruguayan wines (part I)
+2025-08-10 14:34:01,917 - INFO - [26/46] Procesando post 2555: Escribir un libro sobre vinos uruguayos (parte I)
+2025-08-10 14:34:01,922 - INFO - [27/46] Procesando post 2491: La pandemia del COVID-19 acelera cambios en el mundo del vino
+2025-08-10 14:34:01,928 - INFO - [28/46] Procesando post 2451: The real reason why I wrote the Harvest Report Uruguay 2020
+2025-08-10 14:34:01,933 - INFO - [29/46] Procesando post 2424: El motivo real por el que escribí el Informe Vendimia Uruguay 2020
+2025-08-10 14:34:01,937 - INFO - [30/46] Procesando post 2289: El Informe Vendimia — Uruguay 2020 está publicado
+2025-08-10 14:34:01,943 - INFO - [31/46] Procesando post 2265: The Harvest Report — Uruguay 2020 is out!
+2025-08-10 14:34:01,947 - INFO - [32/46] Procesando post 2099: Tim Atkin MW publishes, for the first time, its Uruguay 2020 Special Report
+2025-08-10 14:34:01,952 - INFO - [33/46] Procesando post 1776: Tim Atkin MW publishes, for the first time, its Uruguay 2020 Special Report
+2025-08-10 14:34:01,957 - INFO - [34/46] Procesando post 2103: Things I’ve learnt about the London wine trade
+2025-08-10 14:34:01,963 - INFO - [35/46] Procesando post 1590: Things I’ve learnt about the London wine trade
+2025-08-10 14:34:01,968 - INFO - [36/46] Procesando post 2107: Uruguayan wines surprise a group of Masters of Wine that visited the country
+2025-08-10 14:34:01,973 - INFO - [37/46] Procesando post 1574: Uruguayan wines surprise a group of Masters of Wine that visited the country
+2025-08-10 14:34:01,978 - INFO - [38/46] Procesando post 2119: Maratheftiko, native red variety in Cyprus
+2025-08-10 14:34:01,983 - INFO - [39/46] Procesando post 1570: Maratheftiko, native red variety in Cyprus
+2025-08-10 14:34:01,988 - INFO - [40/46] Procesando post 2111: 5 beautiful villages in the Luberon region in Provence
+2025-08-10 14:34:01,994 - INFO - [41/46] Procesando post 1567: 5 beautiful villages in the Luberon region in Provence
+2025-08-10 14:34:01,999 - INFO - [42/46] Procesando post 2115: The Wines of Montenegro
+2025-08-10 14:34:02,004 - INFO - [43/46] Procesando post 1558: The Wines of Montenegro
+2025-08-10 14:34:02,010 - INFO - [44/46] Procesando post 6678: Der Aufstieg der Einweg-E-Zigaretten: Bequemlichkeit als treibende Kraft
+2025-08-10 14:34:02,013 - INFO - [45/46] Procesando post 2124: Rueda, home of Verdejo
+2025-08-10 14:34:02,018 - INFO - [46/46] Procesando post 1555: Rueda, home of Verdejo
+2025-08-10 14:34:02,025 - INFO - ✅ Migración masiva completada: 46/46 posts

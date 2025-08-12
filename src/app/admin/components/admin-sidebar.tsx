@@ -1,4 +1,6 @@
 import { getAllUsers, getColaboradores } from "@/services/user-service"
+import { getAllCategories } from "@/services/category-service"
+import { getPostsCount } from "@/services/post-service"
 import { AdminSidebarClient } from "./admin-sidebar-client"
 
 interface AdminSidebarProps {
@@ -6,18 +8,23 @@ interface AdminSidebarProps {
 }
 
 export async function AdminSidebar({ children }: AdminSidebarProps) {
-  const [users, colaboradores] = await Promise.all([
+  const [users, colaboradores, categories, postsCount] = await Promise.all([
     getAllUsers(),
-    getColaboradores()
+    getColaboradores(),
+    getAllCategories(),
+    getPostsCount(),
   ])
   
   const userCount = users.length
   const colaboradorCount = colaboradores.length
+  const categoriesCount = categories.length
 
   return (
     <AdminSidebarClient 
       userCount={userCount} 
       colaboradorCount={colaboradorCount}
+      categoriesCount={categoriesCount}
+      postsCount={postsCount}
     >
       {children}
     </AdminSidebarClient>

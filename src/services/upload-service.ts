@@ -165,3 +165,110 @@ export async function replaceWorkspaceImage(input: { file: File, workspaceId: st
     throw new Error('Error al reemplazar la imagen del workspace')
   }
 }
+
+/**
+ * Sube una imagen de contenido del blog a Vercel Blob Storage
+ */
+export async function uploadPostImage(input: { 
+  file: File, 
+  postId: string,
+  type: 'content' | 'featured' 
+}) {
+  // Validar que sea imagen
+  if (!input.file.type.startsWith('image/')) {
+    throw new Error('El archivo debe ser una imagen')
+  }
+  
+  // Límites según tipo
+  const maxSize = input.type === 'featured' ? 5 * 1024 * 1024 : 10 * 1024 * 1024
+  if (input.file.size > maxSize) {
+    throw new Error(`La imagen no puede ser mayor a ${maxSize / (1024 * 1024)}MB`)
+  }
+  
+  try {
+    const timestamp = Date.now()
+    const fileExtension = input.file.name.split('.').pop() || 'jpg'
+    const folder = input.type === 'featured' ? 'blog/featured' : 'blog/posts'
+    const fileName = `${folder}/${input.postId}-${timestamp}.${fileExtension}`
+    
+    // Subir a Vercel Blob
+    const blob = await put(fileName, input.file, {
+      access: 'public',
+      addRandomSuffix: false,
+    })
+    
+    return {
+      url: blob.url,
+      fileName: fileName,
+      size: input.file.size,
+      contentType: input.file.type
+    }
+  } catch (error) {
+    console.error('Error uploading blog image:', error)
+    throw new Error('Error al subir la imagen del blog')
+  }
+}
+
+/**
+ * Sube imagen destacada del post
+ */
+export async function uploadFeaturedImage(file: File, postId: string) {
+  return uploadPostImage({ file, postId, type: 'featured' })
+}
+
+/**
+ * Sube imagen de contenido del post
+ */
+export async function uploadContentImage(file: File, postId: string) {
+  return uploadPostImage({ file, postId, type: 'content' })
+}
+
+/**
+ * Elimina todas las imágenes de un post (al eliminar el post)
+ */
+export async function deletePostImages(postId: string, imageUrls: string[]) {
+  const errors = []
+  
+  for (const url of imageUrls) {
+    try {
+      await del(url)
+    } catch (error) {
+      errors.push({ url, error })
+    }
+  }
+  
+  if (errors.length > 0) {
+    console.warn('Some images could not be deleted:', errors)
+  }
+  
+  return { deleted: imageUrls.length - errors.length, errors }
+}
+
+/**
+ * Reemplaza la imagen destacada de un post
+ */
+export async function replaceFeaturedImage(input: { 
+  file: File, 
+  postId: string, 
+  currentImageUrl?: string 
+}) {
+  try {
+    // Subir nueva imagen
+    const newImage = await uploadFeaturedImage(input.file, input.postId)
+    
+    // Eliminar imagen anterior si existe
+    if (input.currentImageUrl) {
+      try {
+        await deleteImage({ url: input.currentImageUrl })
+      } catch (error) {
+        // No fallar si no se puede eliminar la imagen anterior
+        console.warn('Could not delete previous featured image:', error)
+      }
+    }
+    
+    return newImage
+  } catch (error) {
+    console.error('Error replacing featured image:', error)
+    throw new Error('Error al reemplazar la imagen destacada')
+  }
+}

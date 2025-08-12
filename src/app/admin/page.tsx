@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Users, UserCheck, Shield, Plus, Wine } from "lucide-react"
+import { Users, UserCheck, Shield, Plus, Home, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { getAdminDashboardMetrics } from "@/services/dashboard-service"
 
@@ -18,12 +18,20 @@ export default async function AdminDashboard() {
             Gestión del sitio de Gabi Zimmer
           </p>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <Wine className="h-4 w-4 mr-2" />
-            Ver Sitio
-          </Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild variant="outline">
+            <Link href="/">
+              <Home className="h-4 w-4 mr-2" />
+              Ver Sitio
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/blog">
+              <BookOpen className="h-4 w-4 mr-2" />
+              Ver Blog
+            </Link>
+          </Button>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

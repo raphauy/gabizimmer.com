@@ -8,6 +8,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-title: var(--font-geist-sans);
+  --font-default: var(--font-geist-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -45,7 +47,7 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -78,6 +80,22 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Colores personalizados para el blog de vinos */
+  --wine-primary: oklch(0.5 0.15 320);
+  --wine-secondary: oklch(0.7 0.12 340);
+  --wine-accent: oklch(0.6 0.18 300);
+  --wine-muted: oklch(0.9 0.05 320);
+  
+  /* Variables de Novel.sh */
+  --novel-highlight-default: #ffffff;
+  --novel-highlight-purple: #f6f3f8;
+  --novel-highlight-blue: #e6f3ff;
+  --novel-highlight-green: #e6f7e6;
+  --novel-highlight-yellow: #fff3cd;
+  --novel-highlight-red: #ffeaea;
+  --novel-stone-200: #e7e5e4;
+  --novel-stone-800: #292524;
 }
 
 .dark {
@@ -113,6 +131,22 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  
+  /* Colores personalizados para el blog de vinos en modo oscuro */
+  --wine-primary: oklch(0.7 0.15 320);
+  --wine-secondary: oklch(0.6 0.12 340);
+  --wine-accent: oklch(0.65 0.18 300);
+  --wine-muted: oklch(0.25 0.05 320);
+  
+  /* Variables de Novel.sh para modo oscuro */
+  --novel-highlight-default: #000000;
+  --novel-highlight-purple: #2d1b3d;
+  --novel-highlight-blue: #1e3a5f;
+  --novel-highlight-green: #1e3d1e;
+  --novel-highlight-yellow: #3d3520;
+  --novel-highlight-red: #3d1e1e;
+  --novel-stone-200: #57534e;
+  --novel-stone-800: #fafaf9;
 }
 
 @layer base {
@@ -122,4 +156,390 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Utilidades para los colores del vino */
+@layer utilities {
+  .text-wine-primary { color: var(--wine-primary); }
+  .text-wine-secondary { color: var(--wine-secondary); }
+  .text-wine-accent { color: var(--wine-accent); }
+  .text-wine-muted { color: var(--wine-muted); }
+  
+  .bg-wine-primary { background-color: var(--wine-primary); }
+  .bg-wine-secondary { background-color: var(--wine-secondary); }
+  .bg-wine-accent { background-color: var(--wine-accent); }
+  .bg-wine-muted { background-color: var(--wine-muted); }
+  
+  .border-wine-primary { border-color: var(--wine-primary); }
+  .border-wine-secondary { border-color: var(--wine-secondary); }
+  .border-wine-accent { border-color: var(--wine-accent); }
+  .border-wine-muted { border-color: var(--wine-muted); }
+  
+  .hover\:bg-wine-accent:hover { background-color: var(--wine-accent); }
+  .hover\:bg-wine-accent\/90:hover { background-color: var(--wine-accent); opacity: 0.9; }
+  .hover\:text-wine-accent:hover { color: var(--wine-accent); }
+  .hover\:border-wine-accent:hover { border-color: var(--wine-accent); }
+  
+  /* Scrollbar hiding utilities */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+  
+  /* Smooth scrolling for filter bars */
+  .scrollbar-hide {
+    scroll-behavior: smooth;
+  }
+  
+}
+
+/* Estilos ProseMirror oficiales de Novel.sh */
+.ProseMirror {
+  @apply p-12 px-8 sm:px-12;
+}
+
+/* Placeholder para editor vacío */
+.ProseMirror .is-editor-empty:first-child::before,
+.ProseMirror .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: hsl(var(--muted-foreground));
+  pointer-events: none;
+  height: 0;
+}
+
+/* No mostrar placeholder en task items */
+.ProseMirror .task-list-item .is-empty::before,
+.ProseMirror .task-list-item p.is-empty::before,
+.ProseMirror li[data-type="taskItem"] .is-empty::before,
+.ProseMirror li[data-type="taskItem"] p.is-empty::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Estilos para imágenes */
+.ProseMirror img {
+  transition: filter 0.1s ease-in-out;
+  @apply rounded-lg border border-muted;
+}
+
+.ProseMirror img:hover {
+  cursor: pointer;
+  filter: brightness(90%);
+}
+
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 3px solid #5abbf7;
+  filter: brightness(90%);
+}
+
+/* Placeholder para carga de imágenes */
+.img-placeholder {
+  position: relative;
+  @apply bg-muted rounded-lg;
+}
+
+.img-placeholder:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 3px solid var(--novel-stone-200);
+  border-top-color: var(--novel-stone-800);
+  animation: spinning 0.6s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spinning {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Estilos para menciones y highlights */
+.ProseMirror .mention {
+  @apply bg-muted text-foreground rounded px-1;
+}
+
+.ProseMirror .highlight {
+  @apply rounded px-1;
+}
+
+/* Estilos para listas de tareas */
+.ProseMirror .task-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.ProseMirror .task-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  min-height: 1.5rem;
+}
+
+.ProseMirror .task-list-item > label {
+  flex: 0 0 auto;
+  margin: 0;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  height: 1.5rem;
+}
+
+.ProseMirror .task-list-item > label > input[type="checkbox"] {
+  margin: 0;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+
+.ProseMirror .task-list-item > div {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+.ProseMirror .task-list-item p {
+  margin: 0;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+/* Evitar conflictos con estilos prose en task lists */
+.prose .task-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.prose .task-list-item {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+.prose .task-list-item p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+/* Estilos adicionales con data-type para mayor especificidad */
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.ProseMirror li[data-type="taskItem"] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  min-height: 1.5rem;
+}
+
+.ProseMirror li[data-type="taskItem"] > label > input[type="checkbox"] {
+  margin: 0;
+  vertical-align: middle;
+}
+
+.prose ul[data-type="taskList"] {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.prose li[data-type="taskItem"] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 1.5rem;
+}
+
+.prose li[data-type="taskItem"] p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+/* Clases prose para typography manual */
+.prose {
+  color: var(--color-foreground);
+  max-width: 65ch;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.prose-lg {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.prose h1 {
+  color: var(--color-foreground);
+  font-weight: 800;
+  font-size: 2.25em;
+  margin-top: 0;
+  margin-bottom: 0.889em;
+  line-height: 1.111;
+}
+
+.prose h2 {
+  color: var(--color-foreground);
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  line-height: 1.333;
+}
+
+.prose h3 {
+  color: var(--color-foreground);
+  font-weight: 600;
+  font-size: 1.25em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.prose h4 {
+  color: var(--color-foreground);
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.prose ul {
+  list-style-type: disc;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose blockquote {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-foreground);
+  border-left-width: 0.25rem;
+  border-left-color: var(--color-border);
+  quotes: "\201C""\201D""\2018""\2019";
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
+
+.prose code {
+  color: var(--color-foreground);
+  background-color: var(--color-muted);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background-color: var(--color-muted);
+  border-radius: 0.375rem;
+  padding: 0.875em 1.125em;
+  margin-top: 1.714em;
+  margin-bottom: 1.714em;
+  overflow-x: auto;
+}
+
+.prose a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.prose strong {
+  color: var(--color-foreground);
+  font-weight: 600;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose img {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+/* Dark mode para prose */
+.dark .prose {
+  color: var(--color-foreground);
+}
+
+.dark .prose h1,
+.dark .prose h2, 
+.dark .prose h3,
+.dark .prose h4 {
+  color: var(--color-foreground);
+}
+
+.dark .prose blockquote {
+  color: var(--color-foreground);
+  border-left-color: var(--color-border);
+}
+
+.dark .prose code {
+  background-color: var(--color-muted);
+}
+
+.dark .prose pre {
+  background-color: var(--color-muted);
+}
+
+/* Utilidades para heading fonts */
+.prose-headings\:font-title h1,
+.prose-headings\:font-title h2,
+.prose-headings\:font-title h3,
+.prose-headings\:font-title h4,
+.prose-headings\:font-title h5,
+.prose-headings\:font-title h6 {
+  font-family: var(--font-title);
+}
+
+.font-default {
+  font-family: var(--font-default);
+}
+
+.max-w-full {
+  max-width: 100%;
 }

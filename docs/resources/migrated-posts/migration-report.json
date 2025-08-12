@@ -1,0 +1,379 @@
+{
+  "migration_date": "2025-08-10T14:34:02.024502",
+  "total_posts": 46,
+  "successful_migrations": 46,
+  "failed_migrations": 0,
+  "total_time_seconds": 0.3243076801300049,
+  "average_time_per_post": 0.007050166959347932,
+  "success_details": [
+    {
+      "id": 5121,
+      "title": "Cultura Gastronómica en Latinoamérica: un vehículo de empoderamiento cultural",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-5121.md",
+      "images": 1,
+      "content_length": 7793
+    },
+    {
+      "id": 5009,
+      "title": "Tim Atkin MW publica su informe especial sobre Uruguay 2023",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-5009.md",
+      "images": 1,
+      "content_length": 11635
+    },
+    {
+      "id": 4992,
+      "title": "Bodega Garzón lanzó la añada 2020 de su vino ícono Balasto",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4992.md",
+      "images": 1,
+      "content_length": 11281
+    },
+    {
+      "id": 4978,
+      "title": "Directo del Viñedo 2023: Fortaleciendo la Vitivinicultura en Latinoamérica",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4978.md",
+      "images": 1,
+      "content_length": 1711
+    },
+    {
+      "id": 4930,
+      "title": "Mi experiencia como jurado de vinos en el concurso #CMB2023 en Istria, Croacia",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4930.md",
+      "images": 1,
+      "content_length": 27299
+    },
+    {
+      "id": 4817,
+      "title": "Enoturismo: descubre la cultura del vino y cómo elegir la mejor actividad",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4817.md",
+      "images": 1,
+      "content_length": 10506
+    },
+    {
+      "id": 4610,
+      "title": "Preludio de Familia Deicas: la magia de un blend uruguayo único",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4610.md",
+      "images": 1,
+      "content_length": 12057
+    },
+    {
+      "id": 4604,
+      "title": "Un buen producto o servicio no alcanza",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4604.md",
+      "images": 0,
+      "content_length": 7501
+    },
+    {
+      "id": 4585,
+      "title": "Presentación de vinos y nueva imagen de Bodega Garzón",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4585.md",
+      "images": 1,
+      "content_length": 14419
+    },
+    {
+      "id": 4549,
+      "title": "Programa Viticultura Sostenible de INAVI",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4549.md",
+      "images": 1,
+      "content_length": 21725
+    },
+    {
+      "id": 4427,
+      "title": "Mi propuesta para aumentar las exportaciones de vino uruguayo",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4427.md",
+      "images": 1,
+      "content_length": 11125
+    },
+    {
+      "id": 4149,
+      "title": "La Asociación de Turismo Enológico de Uruguay cumple 15 años",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4149.md",
+      "images": 1,
+      "content_length": 2793
+    },
+    {
+      "id": 4131,
+      "title": "16 bodegas uruguayas en Prowein 2022",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-4131.md",
+      "images": 1,
+      "content_length": 1365
+    },
+    {
+      "id": 3917,
+      "title": "12 vinos uruguayos para celebrar el Día del Tannat",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-3917.md",
+      "images": 1,
+      "content_length": 15227
+    },
+    {
+      "id": 3870,
+      "title": "Vinos uruguayos presentes en la Slow Wine Fair 2022",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-3870.md",
+      "images": 1,
+      "content_length": 9271
+    },
+    {
+      "id": 3836,
+      "title": "Nuevos vinos uruguayos de Viña Edén",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-3836.md",
+      "images": 1,
+      "content_length": 7684
+    },
+    {
+      "id": 3820,
+      "title": "Los vinos de NTVG",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-3820.md",
+      "images": 1,
+      "content_length": 6962
+    },
+    {
+      "id": 3309,
+      "title": "Tim Atkin MW publica su informe especial sobre Uruguay 2021",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-3309.md",
+      "images": 1,
+      "content_length": 10973
+    },
+    {
+      "id": 3264,
+      "title": "Tannat criado en ánfora",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-3264.md",
+      "images": 1,
+      "content_length": 23572
+    },
+    {
+      "id": 3196,
+      "title": "Cata vertical de Balasto en Bodega Garzón",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-3196.md",
+      "images": 1,
+      "content_length": 21420
+    },
+    {
+      "id": 2879,
+      "title": "Vinos naturales: definiciones, estilos y reflexiones",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2879.md",
+      "images": 1,
+      "content_length": 10675
+    },
+    {
+      "id": 2825,
+      "title": "3 desafíos y soluciones para comunicar una marca de vinos en el 2020",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2825.md",
+      "images": 1,
+      "content_length": 14264
+    },
+    {
+      "id": 2772,
+      "title": "¡Estreno podcast! Charlas con Vino ya está disponible para escuchar",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2772.md",
+      "images": 1,
+      "content_length": 9665
+    },
+    {
+      "id": 2665,
+      "title": "5 libros para aprender sobre vinos naturales",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2665.md",
+      "images": 1,
+      "content_length": 46786
+    },
+    {
+      "id": 2570,
+      "title": "Writing a book about Uruguayan wines (part I)",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2570.md",
+      "images": 1,
+      "content_length": 10143
+    },
+    {
+      "id": 2555,
+      "title": "Escribir un libro sobre vinos uruguayos (parte I)",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2555.md",
+      "images": 1,
+      "content_length": 10220
+    },
+    {
+      "id": 2491,
+      "title": "La pandemia del COVID-19 acelera cambios en el mundo del vino",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2491.md",
+      "images": 1,
+      "content_length": 23723
+    },
+    {
+      "id": 2451,
+      "title": "The real reason why I wrote the Harvest Report Uruguay 2020",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2451.md",
+      "images": 1,
+      "content_length": 13432
+    },
+    {
+      "id": 2424,
+      "title": "El motivo real por el que escribí el Informe Vendimia Uruguay 2020",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2424.md",
+      "images": 1,
+      "content_length": 13740
+    },
+    {
+      "id": 2289,
+      "title": "El Informe Vendimia — Uruguay 2020 está publicado",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2289.md",
+      "images": 1,
+      "content_length": 12077
+    },
+    {
+      "id": 2265,
+      "title": "The Harvest Report — Uruguay 2020 is out!",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2265.md",
+      "images": 1,
+      "content_length": 11959
+    },
+    {
+      "id": 2099,
+      "title": "Tim Atkin MW publishes, for the first time, its Uruguay 2020 Special Report",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2099.md",
+      "images": 1,
+      "content_length": 7889
+    },
+    {
+      "id": 1776,
+      "title": "Tim Atkin MW publishes, for the first time, its Uruguay 2020 Special Report",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-1776.md",
+      "images": 1,
+      "content_length": 7889
+    },
+    {
+      "id": 2103,
+      "title": "Things I’ve learnt about the London wine trade",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2103.md",
+      "images": 1,
+      "content_length": 8179
+    },
+    {
+      "id": 1590,
+      "title": "Things I’ve learnt about the London wine trade",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-1590.md",
+      "images": 1,
+      "content_length": 8179
+    },
+    {
+      "id": 2107,
+      "title": "Uruguayan wines surprise a group of Masters of Wine that visited the country",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2107.md",
+      "images": 1,
+      "content_length": 10140
+    },
+    {
+      "id": 1574,
+      "title": "Uruguayan wines surprise a group of Masters of Wine that visited the country",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-1574.md",
+      "images": 1,
+      "content_length": 10140
+    },
+    {
+      "id": 2119,
+      "title": "Maratheftiko, native red variety in Cyprus",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2119.md",
+      "images": 1,
+      "content_length": 11353
+    },
+    {
+      "id": 1570,
+      "title": "Maratheftiko, native red variety in Cyprus",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-1570.md",
+      "images": 1,
+      "content_length": 11128
+    },
+    {
+      "id": 2111,
+      "title": "5 beautiful villages in the Luberon region in Provence",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2111.md",
+      "images": 1,
+      "content_length": 7342
+    },
+    {
+      "id": 1567,
+      "title": "5 beautiful villages in the Luberon region in Provence",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-1567.md",
+      "images": 1,
+      "content_length": 7342
+    },
+    {
+      "id": 2115,
+      "title": "The Wines of Montenegro",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2115.md",
+      "images": 1,
+      "content_length": 7928
+    },
+    {
+      "id": 1558,
+      "title": "The Wines of Montenegro",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-1558.md",
+      "images": 1,
+      "content_length": 7114
+    },
+    {
+      "id": 6678,
+      "title": "Der Aufstieg der Einweg-E-Zigaretten: Bequemlichkeit als treibende Kraft",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-6678.md",
+      "images": 0,
+      "content_length": 12268
+    },
+    {
+      "id": 2124,
+      "title": "Rueda, home of Verdejo",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-2124.md",
+      "images": 1,
+      "content_length": 8100
+    },
+    {
+      "id": 1555,
+      "title": "Rueda, home of Verdejo",
+      "status": "success",
+      "file": "../docs/resources/migrated-posts/post-1555.md",
+      "images": 1,
+      "content_length": 7466
+    }
+  ],
+  "error_details": []
+}
