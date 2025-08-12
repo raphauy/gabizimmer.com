@@ -87,6 +87,14 @@
   --wine-accent: oklch(0.6 0.18 300);
   --wine-muted: oklch(0.9 0.05 320);
   
+  /* Colores de marca Gabi Zimmer */
+  --gabi-yellow: #EAE559;
+  --gabi-blue: #0170BB;
+  --gabi-orange: #FF915E;
+  --gabi-orange-dark: #E67E4A;
+  --gabi-dark-green: #35472A;
+  --gabi-light-green: #E7F0BC;
+  
   /* Variables de Novel.sh */
   --novel-highlight-default: #ffffff;
   --novel-highlight-purple: #f6f3f8;
@@ -138,6 +146,14 @@
   --wine-accent: oklch(0.65 0.18 300);
   --wine-muted: oklch(0.25 0.05 320);
   
+  /* Colores de marca Gabi Zimmer para modo oscuro */
+  --gabi-yellow: #EAE559;
+  --gabi-blue: #0170BB;
+  --gabi-orange: #FF915E;
+  --gabi-orange-dark: #E67E4A;
+  --gabi-dark-green: #35472A;
+  --gabi-light-green: #E7F0BC;
+  
   /* Variables de Novel.sh para modo oscuro */
   --novel-highlight-default: #000000;
   --novel-highlight-purple: #2d1b3d;
@@ -179,6 +195,31 @@
   .hover\:bg-wine-accent\/90:hover { background-color: var(--wine-accent); opacity: 0.9; }
   .hover\:text-wine-accent:hover { color: var(--wine-accent); }
   .hover\:border-wine-accent:hover { border-color: var(--wine-accent); }
+  
+  /* Utilidades para colores de marca Gabi Zimmer */
+  .text-gabi-yellow { color: var(--gabi-yellow); }
+  .text-gabi-blue { color: var(--gabi-blue); }
+  .text-gabi-orange { color: var(--gabi-orange); }
+  .text-gabi-dark-green { color: var(--gabi-dark-green); }
+  .text-gabi-light-green { color: var(--gabi-light-green); }
+  
+  .bg-gabi-yellow { background-color: var(--gabi-yellow); }
+  .bg-gabi-blue { background-color: var(--gabi-blue); }
+  .bg-gabi-orange { background-color: var(--gabi-orange); }
+  .bg-gabi-orange-dark { background-color: var(--gabi-orange-dark); }
+  .bg-gabi-dark-green { background-color: var(--gabi-dark-green); }
+  .bg-gabi-light-green { background-color: var(--gabi-light-green); }
+  
+  .border-gabi-yellow { border-color: var(--gabi-yellow); }
+  .border-gabi-blue { border-color: var(--gabi-blue); }
+  .border-gabi-orange { border-color: var(--gabi-orange); }
+  .border-gabi-dark-green { border-color: var(--gabi-dark-green); }
+  .border-gabi-light-green { border-color: var(--gabi-light-green); }
+  
+  .hover\:bg-gabi-dark-green:hover { background-color: var(--gabi-dark-green); }
+  .hover\:bg-gabi-blue:hover { background-color: var(--gabi-blue); }
+  .hover\:text-gabi-dark-green:hover { color: var(--gabi-dark-green); }
+  .hover\:border-gabi-dark-green:hover { border-color: var(--gabi-dark-green); }
   
   /* Scrollbar hiding utilities */
   .scrollbar-hide {

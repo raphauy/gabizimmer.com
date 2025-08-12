@@ -20,8 +20,7 @@ import {
   Check, 
   X, 
   RefreshCw,
-  Save,
-  Send
+  Save
 } from "lucide-react"
 import { 
   generateSlugAction, 
@@ -32,7 +31,7 @@ import {
 import { PostImageUpload } from "./post-image-upload"
 import { CategorySelector } from "./category-selector"
 import { type PostWithRelations } from "@/services/post-service"
-import { type Category } from "@prisma/client"
+import { type Category, type PostStatus } from "@prisma/client"
 import dynamic from "next/dynamic"
 import { PostEditorSkeleton } from "./post-editor"
 import { type JSONContent } from "novel"
@@ -54,8 +53,7 @@ interface PostFormProps {
 
 export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
   const router = useRouter()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSavingDraft, setIsSavingDraft] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   
   // Estados del formulario
@@ -67,6 +65,7 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
   const [excerpt, setExcerpt] = useState(post?.excerpt || "")
   const [categoryId, setCategoryId] = useState(post?.categoryId || "")
   const [language, setLanguage] = useState<"ES" | "EN">(post?.language || "ES")
+  const [status, setStatus] = useState<PostStatus>(post?.status || "DRAFT")
   const [featuredImageUrl, setFeaturedImageUrl] = useState(post?.featuredImageUrl || null)
   const [seoTitle, setSeoTitle] = useState(post?.seoTitle || "")
   const [seoDescription, setSeoDescription] = useState(post?.seoDescription || "")
@@ -147,17 +146,17 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
     return true
   }
 
-  const handleSaveDraft = async () => {
+  const handleSave = async () => {
     if (!validateForm()) return
 
-    setIsSavingDraft(true)
+    setIsSaving(true)
     try {
       const postData = {
         title: title.trim(),
         slug: slug.trim(),
         content,
         excerpt: excerpt.trim() || null,
-        status: "DRAFT" as const,
+        status,
         language: language as "ES" | "EN",
         featuredImageUrl,
         categoryId,
@@ -173,49 +172,16 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
         toast.success(result.message)
         if (!isEdit) {
           router.push(`/admin/posts/${result.post?.id}/edit`)
+        } else if (status === "PUBLISHED") {
+          router.push("/admin/posts")
         }
       } else {
         toast.error(result.error)
       }
     } catch {
-      toast.error("Error al guardar el borrador")
+      toast.error("Error al guardar el post")
     } finally {
-      setIsSavingDraft(false)
-    }
-  }
-
-  const handlePublish = async () => {
-    if (!validateForm()) return
-
-    setIsSubmitting(true)
-    try {
-      const postData = {
-        title: title.trim(),
-        slug: slug.trim(),
-        content,
-        excerpt: excerpt.trim() || null,
-        status: "PUBLISHED" as const,
-        language: language as "ES" | "EN",
-        featuredImageUrl,
-        categoryId,
-        seoTitle: seoTitle.trim() || null,
-        seoDescription: seoDescription.trim() || null
-      }
-
-      const result = isEdit && post
-        ? await updatePostAction(post.id, postData)
-        : await createPostAction(postData)
-
-      if (result.success) {
-        toast.success(result.message)
-        router.push("/admin/posts")
-      } else {
-        toast.error(result.error)
-      }
-    } catch {
-      toast.error("Error al publicar el post")
-    } finally {
-      setIsSubmitting(false)
+      setIsSaving(false)
     }
   }
 
@@ -284,8 +250,8 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
             )}
           </div>
 
-          {/* Categoría e Idioma */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* Categoría, Idioma y Status */}
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <Label htmlFor="category">Categoría</Label>
               <CategorySelector
@@ -304,6 +270,35 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
                 <SelectContent>
                   <SelectItem value="ES">Español</SelectItem>
                   <SelectItem value="EN">English</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <Label htmlFor="status">Estado</Label>
+              <Select value={status} onValueChange={(value) => setStatus(value as PostStatus)}>
+                <SelectTrigger id="status">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="DRAFT">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-amber-500"></div>
+                      Borrador
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="PUBLISHED">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                      Publicado
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="ARCHIVED">
+                    <div className="flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-gray-500"></div>
+                      Archivado
+                    </div>
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -340,7 +335,7 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
             <DynamicPostEditor
               content={content}
               onChange={setContent}
-              onSave={handleSaveDraft}
+              onSave={handleSave}
             />
           ) : (
             <PostEditorSkeleton />
@@ -412,12 +407,10 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
 
         <div className="flex gap-3">
           <Button
-            type="button"
-            variant="secondary"
-            onClick={handleSaveDraft}
-            disabled={isSavingDraft || isSubmitting || slugIsUnique === false}
+            onClick={handleSave}
+            disabled={isSaving || slugIsUnique === false}
           >
-            {isSavingDraft ? (
+            {isSaving ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                 Guardando...
@@ -425,24 +418,9 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
             ) : (
               <>
                 <Save className="h-4 w-4 mr-2" />
-                Guardar Borrador
-              </>
-            )}
-          </Button>
-
-          <Button
-            onClick={handlePublish}
-            disabled={isSubmitting || isSavingDraft || slugIsUnique === false}
-          >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                Publicando...
-              </>
-            ) : (
-              <>
-                <Send className="h-4 w-4 mr-2" />
-                {isEdit ? "Actualizar" : "Publicar"}
+                {status === "PUBLISHED" ? (isEdit ? "Actualizar y Publicar" : "Guardar y Publicar") : 
+                 status === "ARCHIVED" ? "Archivar" : 
+                 "Guardar Borrador"}
               </>
             )}
           </Button>

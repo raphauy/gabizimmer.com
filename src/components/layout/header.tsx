@@ -17,7 +17,8 @@ export function Header() {
   
   const navItems = [
     { href: '/', label: 'Inicio' },
-    { href: '/blog', label: 'Blog' }
+    { href: '/blog', label: 'Blog' },
+    { href: '/about', label: 'Sobre Gabi' }
   ]
   
   return (

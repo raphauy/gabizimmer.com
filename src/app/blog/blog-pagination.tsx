@@ -83,7 +83,7 @@ export async function BlogPagination({ currentPage, category, search, basePath =
           variant="outline"
           size="icon"
           asChild
-          className="hover:bg-wine-primary/10 hover:text-wine-primary hover:border-wine-primary"
+          className="hover:bg-gabi-dark-green/10 hover:text-gabi-dark-green hover:border-gabi-dark-green"
         >
           <Link href={buildUrl(currentPage - 1)} aria-label="Página anterior">
             <ChevronLeft className="h-4 w-4" />
@@ -108,8 +108,8 @@ export async function BlogPagination({ currentPage, category, search, basePath =
             size="sm"
             asChild
             className={currentPage === 1 
-              ? "bg-wine-primary hover:bg-wine-accent" 
-              : "hover:bg-wine-primary/10 hover:text-wine-primary hover:border-wine-primary"
+              ? "bg-gabi-dark-green hover:bg-gabi-blue" 
+              : "hover:bg-gabi-dark-green/10 hover:text-gabi-dark-green hover:border-gabi-dark-green"
             }
           >
             <Link href={buildUrl(1)}>1</Link>
@@ -128,8 +128,8 @@ export async function BlogPagination({ currentPage, category, search, basePath =
           size="sm"
           asChild
           className={currentPage === pageNum 
-            ? "bg-wine-primary hover:bg-wine-accent" 
-            : "hover:bg-wine-primary/10 hover:text-wine-primary hover:border-wine-primary"
+            ? "bg-gabi-dark-green hover:bg-gabi-blue" 
+            : "hover:bg-gabi-dark-green/10 hover:text-gabi-dark-green hover:border-gabi-dark-green"
           }
         >
           <Link href={buildUrl(pageNum)}>
@@ -149,8 +149,8 @@ export async function BlogPagination({ currentPage, category, search, basePath =
             size="sm"
             asChild
             className={currentPage === totalPages 
-              ? "bg-wine-primary hover:bg-wine-accent" 
-              : "hover:bg-wine-primary/10 hover:text-wine-primary hover:border-wine-primary"
+              ? "bg-gabi-dark-green hover:bg-gabi-blue" 
+              : "hover:bg-gabi-dark-green/10 hover:text-gabi-dark-green hover:border-gabi-dark-green"
             }
           >
             <Link href={buildUrl(totalPages)}>{totalPages}</Link>
@@ -164,7 +164,7 @@ export async function BlogPagination({ currentPage, category, search, basePath =
           variant="outline"
           size="icon"
           asChild
-          className="hover:bg-wine-primary/10 hover:text-wine-primary hover:border-wine-primary"
+          className="hover:bg-gabi-dark-green/10 hover:text-gabi-dark-green hover:border-gabi-dark-green"
         >
           <Link href={buildUrl(currentPage + 1)} aria-label="Página siguiente">
             <ChevronRight className="h-4 w-4" />

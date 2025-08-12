@@ -77,7 +77,7 @@ export function PostCard({ post, variant, className }: PostCardProps) {
             )}
             {/* Badge de categoría */}
             <div className="absolute top-4 left-4">
-              <Badge className="bg-wine-primary text-white border-0">
+              <Badge className="bg-gabi-dark-green text-white border-0">
                 {post.category.name}
               </Badge>
             </div>
@@ -89,7 +89,7 @@ export function PostCard({ post, variant, className }: PostCardProps) {
             isFeatured ? "aspect-[21/9]" : "aspect-video"
           )}>
             <div className="absolute top-4 left-4">
-              <Badge className="bg-wine-primary text-white border-0">
+              <Badge className="bg-gabi-dark-green text-white border-0">
                 {post.category.name}
               </Badge>
             </div>

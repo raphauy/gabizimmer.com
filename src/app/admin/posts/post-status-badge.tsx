@@ -12,17 +12,17 @@ export function PostStatusBadge({ status }: PostStatusBadgeProps) {
       case "DRAFT":
         return {
           label: "Borrador",
-          className: "bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900 dark:text-amber-200"
+          className: "bg-amber-100 text-amber-800 border-amber-800 hover:bg-amber-100 dark:bg-amber-900 dark:text-amber-200 dark:border-amber-200"
         }
       case "PUBLISHED":
         return {
           label: "Publicado",
-          className: "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-200"
+          className: "bg-green-100 text-green-800 border-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-200 dark:border-green-200"
         }
       case "ARCHIVED":
         return {
           label: "Archivado",
-          className: "bg-gray-100 text-gray-800 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+          className: "bg-gray-100 text-gray-800 border-gray-800 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-200"
         }
       default:
         return {
@@ -35,7 +35,7 @@ export function PostStatusBadge({ status }: PostStatusBadgeProps) {
   const config = getStatusConfig(status)
   
   return (
-    <Badge variant="outline" className={cn("border-0", config.className)}>
+    <Badge variant="outline" className={cn(config.className)}>
       {config.label}
     </Badge>
   )
