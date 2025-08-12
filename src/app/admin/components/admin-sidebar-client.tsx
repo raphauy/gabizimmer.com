@@ -45,7 +45,7 @@ const adminNavItems = [
     title: "Comentarios",
     href: "/admin/comments",
     icon: MessageSquare,
-    badge: "pendingComments"
+    badge: "comments"
   },
   {
     title: "Categorías",
@@ -72,7 +72,7 @@ interface AdminSidebarClientProps {
   colaboradorCount: number
   categoriesCount: number
   postsCount?: number
-  pendingCommentsCount?: number
+  commentsCount?: number
 }
 
 export function AdminSidebarClient({ 
@@ -81,7 +81,7 @@ export function AdminSidebarClient({
   colaboradorCount, 
   categoriesCount,
   postsCount = 0, 
-  pendingCommentsCount = 0 
+  commentsCount = 0 
 }: AdminSidebarClientProps) {
   const pathname = usePathname()
 
@@ -95,8 +95,8 @@ export function AdminSidebarClient({
         return categoriesCount
       case "posts":
         return postsCount
-      case "pendingComments":
-        return pendingCommentsCount
+      case "comments":
+        return commentsCount
       default:
         return 0
     }

@@ -1,6 +1,8 @@
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
 import { type Comment, type CommentStatus, type Prisma } from "@prisma/client"
+import { moderateComment } from "@/services/ai-moderation-service"
+import { sendCommentRejectionEmail } from "@/services/email-service"
 
 // Tipo personalizado para comentarios con relación de post
 export type CommentWithPost = Comment & {
@@ -11,6 +13,8 @@ export type CommentWithPost = Comment & {
       slug: string
     }
   }
+  approvedBy?: string | null
+  rejectionReason?: string | null
 }
 
 // ✅ Validaciones al inicio del archivo
@@ -143,7 +147,8 @@ export async function createComment(data: CreateCommentData): Promise<Comment> {
   
   // Verificar que el post existe
   const post = await prisma.post.findUnique({
-    where: { id: validated.postId }
+    where: { id: validated.postId },
+    select: { id: true, title: true, status: true }
   })
   
   if (!post) {
@@ -154,25 +159,66 @@ export async function createComment(data: CreateCommentData): Promise<Comment> {
     throw new Error("No se pueden agregar comentarios a posts no publicados")
   }
   
-  // Verificación anti-spam básica
-  const spamDetected = isSpam(validated.content)
-  const initialStatus: CommentStatus = spamDetected ? 'REJECTED' : 'PENDING'
-  
-  // Verificar si el email ya tiene comentarios aprobados (auto-aprobar)
-  const previousApprovedComment = await prisma.comment.findFirst({
-    where: {
-      authorEmail: validated.authorEmail,
-      status: 'APPROVED'
-    }
+  // NUEVO: Moderación con IA
+  const moderation = await moderateComment({
+    content: validated.content,
+    postTitle: post.title,
+    authorName: validated.authorName,
+    authorEmail: validated.authorEmail
   })
   
-  const finalStatus: CommentStatus = previousApprovedComment ? 'APPROVED' : initialStatus
+  let finalStatus: CommentStatus = 'PENDING'
+  let approvedBy: string | null = null
+  let rejectionReason: string | null = null
+  
+  if (moderation) {
+    // Si la IA pudo moderar
+    if (moderation.isAppropriate) {
+      finalStatus = 'APPROVED'
+      approvedBy = 'Agente IA'
+    } else {
+      finalStatus = 'REJECTED'
+      approvedBy = 'Agente IA'
+      rejectionReason = moderation.reason || 'Contenido inadecuado'
+      
+      // Enviar email de notificación de rechazo
+      await sendCommentRejectionEmail({
+        commentContent: validated.content,
+        postTitle: post.title,
+        authorName: validated.authorName,
+        authorEmail: validated.authorEmail,
+        rejectionReason,
+        commentDate: new Date()
+      })
+    }
+  } else {
+    // Si la IA falla, usar lógica tradicional
+    if (isSpam(validated.content)) {
+      finalStatus = 'REJECTED'
+      rejectionReason = 'Detectado como spam por filtro básico'
+    } else {
+      // Verificar si el email ya tiene comentarios aprobados (auto-aprobar)
+      const previousApprovedComment = await prisma.comment.findFirst({
+        where: {
+          authorEmail: validated.authorEmail,
+          status: 'APPROVED'
+        }
+      })
+      
+      if (previousApprovedComment) {
+        finalStatus = 'APPROVED'
+        approvedBy = 'Auto-aprobado por historial'
+      }
+    }
+  }
   
   try {
     const comment = await prisma.comment.create({
       data: {
         ...validated,
-        status: finalStatus
+        status: finalStatus,
+        approvedBy,
+        rejectionReason
       }
     })
     
@@ -184,9 +230,9 @@ export async function createComment(data: CreateCommentData): Promise<Comment> {
 }
 
 /**
- * Modera un comentario (aprobar/rechazar)
+ * Modera un comentario manualmente (aprobar/rechazar)
  */
-export async function moderateComment(data: ModerateCommentData): Promise<Comment> {
+export async function moderateCommentManually(data: ModerateCommentData & { moderatorEmail?: string }): Promise<Comment> {
   const validated = moderateCommentSchema.parse(data)
   
   const comment = await prisma.comment.findUnique({
@@ -200,7 +246,13 @@ export async function moderateComment(data: ModerateCommentData): Promise<Commen
   try {
     return await prisma.comment.update({
       where: { id: validated.id },
-      data: { status: validated.status }
+      data: { 
+        status: validated.status,
+        // Si se aprueba manualmente, actualizar approvedBy
+        approvedBy: validated.status === 'APPROVED' 
+          ? (data.moderatorEmail || 'Moderador manual')
+          : comment.approvedBy
+      }
     })
   } catch (error) {
     console.error('Error moderating comment:', error)
@@ -228,6 +280,13 @@ export async function deleteComment(id: string): Promise<Comment> {
     console.error('Error deleting comment:', error)
     throw new Error('Error al eliminar el comentario')
   }
+}
+
+/**
+ * Obtiene el total de comentarios
+ */
+export async function getCommentsCount(): Promise<number> {
+  return await prisma.comment.count()
 }
 
 /**

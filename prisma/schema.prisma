@@ -130,6 +130,10 @@ model Comment {
   authorName  String
   authorEmail String
   
+  // Campos para tracking de moderación
+  approvedBy      String?       // "Agente IA", email del user, o null
+  rejectionReason String?       // Razón del rechazo por IA
+  
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   

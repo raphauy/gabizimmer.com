@@ -1,7 +1,7 @@
 import { getAllUsers, getColaboradores } from "@/services/user-service"
 import { getAllCategories } from "@/services/category-service"
 import { getPostsCount } from "@/services/post-service"
-import { getPendingComments } from "@/services/comment-service"
+import { getCommentsCount } from "@/services/comment-service"
 import { AdminSidebarClient } from "./admin-sidebar-client"
 
 interface AdminSidebarProps {
@@ -9,18 +9,17 @@ interface AdminSidebarProps {
 }
 
 export async function AdminSidebar({ children }: AdminSidebarProps) {
-  const [users, colaboradores, categories, postsCount, pendingComments] = await Promise.all([
+  const [users, colaboradores, categories, postsCount, commentsCount] = await Promise.all([
     getAllUsers(),
     getColaboradores(),
     getAllCategories(),
     getPostsCount(),
-    getPendingComments(),
+    getCommentsCount(),
   ])
   
   const userCount = users.length
   const colaboradorCount = colaboradores.length
   const categoriesCount = categories.length
-  const pendingCommentsCount = pendingComments.length
 
   return (
     <AdminSidebarClient 
@@ -28,7 +27,7 @@ export async function AdminSidebar({ children }: AdminSidebarProps) {
       colaboradorCount={colaboradorCount}
       categoriesCount={categoriesCount}
       postsCount={postsCount}
-      pendingCommentsCount={pendingCommentsCount}
+      commentsCount={commentsCount}
     >
       {children}
     </AdminSidebarClient>

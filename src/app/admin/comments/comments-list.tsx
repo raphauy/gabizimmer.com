@@ -172,6 +172,7 @@ export function CommentsList() {
                   <th className="text-left p-3 font-medium text-sm">Contenido</th>
                   <th className="text-left p-3 font-medium text-sm">Post</th>
                   <th className="text-left p-3 font-medium text-sm">Estado</th>
+                  <th className="text-left p-3 font-medium text-sm">Aprobado por</th>
                   <th className="text-left p-3 font-medium text-sm">Fecha</th>
                   <th className="text-right p-3 font-medium text-sm">Acciones</th>
                 </tr>
@@ -226,7 +227,20 @@ export function CommentsList() {
                       </div>
                     </td>
                     <td className="p-3">
-                      <CommentStatusBadge status={comment.status} />
+                      <CommentStatusBadge status={comment.status} rejectionReason={comment.rejectionReason} />
+                    </td>
+                    <td className="p-3">
+                      <div className="text-sm text-muted-foreground">
+                        {comment.approvedBy === 'Agente IA' ? (
+                          <span className="text-purple-600 dark:text-purple-400">
+                            {comment.approvedBy}
+                          </span>
+                        ) : comment.approvedBy ? (
+                          <span>{comment.approvedBy}</span>
+                        ) : (
+                          <span className="text-gray-400">-</span>
+                        )}
+                      </div>
                     </td>
                     <td className="p-3">
                       <div className="text-xs text-muted-foreground space-y-0.5 whitespace-nowrap">

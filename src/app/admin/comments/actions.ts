@@ -3,7 +3,7 @@
 import { auth } from "@/lib/auth"
 import { 
   getAllComments, 
-  moderateComment, 
+  moderateCommentManually, 
   deleteComment,
   getCommentsStats,
   getPendingComments,
@@ -95,7 +95,11 @@ export async function approveCommentAction(id: string) {
       throw new Error("No autorizado para moderar comentarios")
     }
     
-    await moderateComment({ id, status: "APPROVED" })
+    await moderateCommentManually({ 
+      id, 
+      status: "APPROVED",
+      moderatorEmail: session.user.email || undefined
+    })
     
     revalidatePath("/admin/comments")
     revalidatePath("/admin") // Dashboard stats
@@ -122,7 +126,11 @@ export async function rejectCommentAction(id: string) {
       throw new Error("No autorizado para moderar comentarios")
     }
     
-    await moderateComment({ id, status: "REJECTED" })
+    await moderateCommentManually({ 
+      id, 
+      status: "REJECTED",
+      moderatorEmail: session.user.email || undefined
+    })
     
     revalidatePath("/admin/comments")
     revalidatePath("/admin") // Dashboard stats
@@ -180,7 +188,11 @@ export async function bulkModerateAction(
     }
     
     const results = await Promise.allSettled(
-      ids.map(id => moderateComment({ id, status }))
+      ids.map(id => moderateCommentManually({ 
+        id, 
+        status,
+        moderatorEmail: session.user.email || undefined
+      }))
     )
     
     const successCount = results.filter(r => r.status === "fulfilled").length
