@@ -144,12 +144,12 @@ Template (no borrar):
 </FEATURE>
 -->
 
-<FEATURE number="1" status="CREATING-PRP" prp-file-path="">
+<FEATURE number="1" status="PRP-DONE" prp-file-path="/docs/PRPs/post-preview-prp.md">
 Implementar un preview de un post en la parte de edición o creación.
 Está previsto un componente que se usa para ver un post que no tiene la parte de comentarios ni de relacionados, utilizar ese. Quiero que su contenido se vea igual a como se verá cuando esté publicado.
 Utilizar el agente UI/UX para ver dónde poner el botón de preview y la vista, además de la navegación para que sea fácil e intuitivo para el usuario.
 </FEATURE>
 
-<FEATURE number="2" status="PENDING" prp-file-path="">
+<FEATURE number="2" status="PRP-DONE" prp-file-path="/docs/PRPs/comments-moderation-prp.md">
 Implementar la parte de visualización y moderación de comentarios en /admin
 </FEATURE>

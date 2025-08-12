@@ -20,7 +20,8 @@ import {
   Check, 
   X, 
   RefreshCw,
-  Save
+  Save,
+  Eye
 } from "lucide-react"
 import { 
   generateSlugAction, 
@@ -35,6 +36,7 @@ import { type Category, type PostStatus } from "@prisma/client"
 import dynamic from "next/dynamic"
 import { PostEditorSkeleton } from "./post-editor"
 import { type JSONContent } from "novel"
+import { PostPreview } from "./post-preview"
 
 // Cargar el editor dinámicamente para evitar SSR
 const DynamicPostEditor = dynamic(
@@ -188,10 +190,14 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
   return (
     <div className="space-y-6">
       <Tabs defaultValue={isEdit ? "content" : "basic"} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="basic">Datos básicos</TabsTrigger>
-          <TabsTrigger value="content">Contenido</TabsTrigger>
-          <TabsTrigger value="seo">SEO</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="basic" className="cursor-pointer">Datos básicos</TabsTrigger>
+          <TabsTrigger value="content" className="cursor-pointer">Contenido</TabsTrigger>
+          <TabsTrigger value="seo" className="cursor-pointer">SEO</TabsTrigger>
+          <TabsTrigger value="preview" className="cursor-pointer">
+            <Eye className="h-4 w-4 mr-2" />
+            Preview
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="basic" className="space-y-4 mt-6">
@@ -392,6 +398,19 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
               </p>
             </div>
           </div>
+        </TabsContent>
+
+        <TabsContent value="preview" className="mt-6">
+          <PostPreview
+            title={title}
+            content={content}
+            excerpt={excerpt}
+            featuredImageUrl={featuredImageUrl}
+            categoryId={categoryId}
+            categories={categories}
+            authorName={post?.author?.name || 'Gabi Zimmer'}
+            createdAt={post?.createdAt}
+          />
         </TabsContent>
       </Tabs>
 
