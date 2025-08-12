@@ -1,34 +1,33 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarInset,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuBadge,
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
-  SidebarHeader,
 } from "@/components/ui/sidebar"
 import {
-  Home,
-  Users,
-  Settings,
+  BookOpen,
   FileText,
-  MessageSquare,
   FolderOpen,
-  Tag,
-  BookOpen
+  Home,
+  MessageSquare,
+  Settings,
+  Users
 } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const adminNavItems = [
   {

@@ -150,3 +150,6 @@ Está previsto un componente que se usa para ver un post que no tiene la parte d
 Utilizar el agente UI/UX para ver dónde poner el botón de preview y la vista, además de la navegación para que sea fácil e intuitivo para el usuario.
 </FEATURE>
 
+<FEATURE number="2" status="PENDING" prp-file-path="">
+Implementar la parte de visualización y moderación de comentarios en /admin
+</FEATURE>
