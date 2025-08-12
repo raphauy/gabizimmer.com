@@ -410,6 +410,8 @@ export function PostForm({ post, categories, isEdit = false }: PostFormProps) {
             categories={categories}
             authorName={post?.author?.name || 'Gabi Zimmer'}
             createdAt={post?.createdAt}
+            status={status}
+            publishedAt={status === 'PUBLISHED' ? (post?.publishedAt || new Date()) : null}
           />
         </TabsContent>
       </Tabs>

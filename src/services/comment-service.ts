@@ -4,7 +4,13 @@ import { type Comment, type CommentStatus, type Prisma } from "@prisma/client"
 
 // Tipo personalizado para comentarios con relación de post
 export type CommentWithPost = Comment & {
-  post: { title: string; slug: string }
+  post: { 
+    title: string
+    slug: string
+    category?: {
+      slug: string
+    }
+  }
 }
 
 // ✅ Validaciones al inicio del archivo
@@ -92,7 +98,12 @@ export async function getPendingComments(): Promise<CommentWithPost[]> {
       post: {
         select: {
           title: true,
-          slug: true
+          slug: true,
+          category: {
+            select: {
+              slug: true
+            }
+          }
         }
       }
     },
@@ -291,7 +302,12 @@ export async function getRecentComments(limit: number = 5): Promise<CommentWithP
       post: {
         select: {
           title: true,
-          slug: true
+          slug: true,
+          category: {
+            select: {
+              slug: true
+            }
+          }
         }
       }
     },

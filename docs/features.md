@@ -80,6 +80,36 @@ Blog personal de Gabi Zimmer para publicar contenido editorial sobre vino, gastr
   - Responsive design y dark mode completo
 - **Accesible para superadmin y colaboradores (solo superadmin puede eliminar)**
 
+### 3. Sistema de Moderación de Comentarios (`/admin/comments`)
+- **Panel completo de gestión de comentarios**:
+  - Vista con estadísticas en tiempo real: total, pendientes, aprobados, rechazados
+  - Tabla con todos los comentarios del blog con información completa
+  - Filtros por estado (PENDING, APPROVED, REJECTED)
+  - Búsqueda por contenido, autor, email o post relacionado
+- **Acciones de moderación individuales**:
+  - Aprobar comentarios pendientes o rechazados
+  - Rechazar comentarios pendientes o aprobados
+  - Eliminar permanentemente (solo superadmin)
+  - Ver comentario en contexto del post (enlace directo)
+- **Acciones masivas (bulk)**:
+  - Selección múltiple con checkboxes
+  - Aprobar múltiples comentarios de una vez
+  - Rechazar múltiples comentarios de una vez
+  - Eliminar múltiples (solo superadmin)
+  - Confirmación antes de ejecutar acciones masivas
+- **Estadísticas visuales**:
+  - 4 tarjetas con métricas clave usando iconos y colores distintivos
+  - Post más comentado con conteo total
+  - Cantidad de participantes únicos en la comunidad
+  - Badge en sidebar con conteo de comentarios pendientes
+- **Interfaz optimizada**:
+  - Loading states con skeleton components
+  - Toast notifications para feedback de operaciones
+  - Enlaces directos a posts relacionados con ícono externo
+  - Badges de estado con colores consistentes (ámbar/pendiente, verde/aprobado, rojo/rechazado)
+  - Responsive design y soporte completo para dark mode
+- **Accesible para superadmin y colaboradores (solo superadmin puede eliminar)**
+
 ## Features Públicas
 
 ### 1. Chat con Asistente de Vinos (página principal `/`)
@@ -106,6 +136,7 @@ Blog personal de Gabi Zimmer para publicar contenido editorial sobre vino, gastr
 ### Servicios Backend
 - `category-service.ts` - CRUD de categorías, validaciones Zod, verificación de unicidad de slug, protección contra eliminación con posts asociados
 - `post-service.ts` - CRUD completo de posts, validaciones Zod avanzadas, verificación de unicidad de slug por idioma, cálculo de tiempo de lectura, protección de integridad referencial, gestión de estados de publicación
+- `comment-service.ts` - CRUD de comentarios, moderación (PENDING/APPROVED/REJECTED), detección anti-spam básica, auto-aprobación para usuarios con comentarios previos aprobados, estadísticas de participación
 - `upload-service.ts` - Upload de imágenes featured y contenido a Vercel Blob con organización por carpetas
 
 ### APIs de Chat
@@ -113,6 +144,7 @@ Blog personal de Gabi Zimmer para publicar contenido editorial sobre vino, gastr
 
 ### Modelos de Base de Datos
 - **Category** (id, name, slug, description, posts[], createdAt, updatedAt)
+- **Comment** (id, content, status, postId, authorName, authorEmail, createdAt, updatedAt)
 
 ### Sistema de Diseño (`/docs/sistema-diseno-gz.md`)
 - **Sistema completo basado en la identidad de marca Gabi Zimmer**:
@@ -144,12 +176,15 @@ Template (no borrar):
 </FEATURE>
 -->
 
-<FEATURE number="1" status="PRP-DONE" prp-file-path="/docs/PRPs/post-preview-prp.md">
-Implementar un preview de un post en la parte de edición o creación.
-Está previsto un componente que se usa para ver un post que no tiene la parte de comentarios ni de relacionados, utilizar ese. Quiero que su contenido se vea igual a como se verá cuando esté publicado.
-Utilizar el agente UI/UX para ver dónde poner el botón de preview y la vista, además de la navegación para que sea fácil e intuitivo para el usuario.
+<FEATURE number="2" status="DONE" prp-file-path="/docs/PRPs/comments-moderation-prp.md">
+Implementar la parte de visualización y moderación de comentarios en /admin
 </FEATURE>
 
-<FEATURE number="2" status="PRP-DONE" prp-file-path="/docs/PRPs/comments-moderation-prp.md">
-Implementar la parte de visualización y moderación de comentarios en /admin
+<FEATURE number="3" status="PRP-DONE" prp-file-path="/docs/PRPs/ai-comment-moderator-prp.md">
+Implementar un agente de IA que sea moderador de comentarios, utilizar generateObject de Vercel AI SDK (https://ai-sdk.dev/docs/ai-sdk-core/generating-structured-data) con un prompt que solicte un primer nivel de moderación intentando identificar si el comentario no es adecuado.
+Utilizar el modelo "openai/gpt-5" con el Vercel AI Gateway como el del chat, a diferencia que el del chat es el mini, aquí no usamos el mini, queremos el mejor modelo para que salga la mejor moderación.
+Si lo es, autorizar y publicar el comentario.
+Si no lo es, solicitar en el objeto de respuesta un breve argumento por el que fue baneado y enviar un email a Gabi Zimmer (gabi@gabizimmer.com) con copia a Rapha (rapha.uy@rapha.uy) notificando el comentario y el motivo del baneo del Agente de IA.
+Utilizar una plantilla como la del OTP (src/components/emails/otp-email.tsx)
+Agregar al modelo un campo para poner el nombre del usuario que aprobó el comentario o si el comentario es aprobado por el Agente de IA, poner el string "Agente IA". Si el usuario no tiene nombre poner el email. Este campo es solamente informativo y que aparezca en la lista de comentarios en la parte de /admin/comments.
 </FEATURE>

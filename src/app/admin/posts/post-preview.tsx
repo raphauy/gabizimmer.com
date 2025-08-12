@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { PostContent } from '@/app/blog/components/post-content'
 import { PostHeader } from '@/app/blog/components/post-header'
 import { PostPreviewViewport } from './post-preview-viewport'
-import type { Category } from '@prisma/client'
+import type { Category, PostStatus } from '@prisma/client'
 import type { JSONContent } from "novel"
 
 interface PostPreviewProps {
@@ -17,6 +17,8 @@ interface PostPreviewProps {
   categories: Category[]
   authorName?: string
   createdAt?: Date
+  status?: PostStatus
+  publishedAt?: Date | null
 }
 
 export function PostPreview({
@@ -27,7 +29,9 @@ export function PostPreview({
   categoryId,
   categories,
   authorName,
-  createdAt
+  createdAt,
+  status = 'DRAFT',
+  publishedAt
 }: PostPreviewProps) {
   const [viewport, setViewport] = useState<'mobile' | 'tablet' | 'desktop'>('desktop')
   
@@ -39,14 +43,14 @@ export function PostPreview({
     content,
     excerpt: excerpt || null,
     featuredImageUrl: featuredImageUrl || null,
-    status: 'DRAFT' as const,
+    status,
     language: 'ES' as const,
     seoTitle: null,
     seoDescription: null,
     authorId: 'preview',
     categoryId,
     readingTime: null,
-    publishedAt: null,
+    publishedAt: publishedAt || null,
     createdAt: createdAt || new Date(),
     updatedAt: new Date(),
     author: {
@@ -66,7 +70,7 @@ export function PostPreview({
     _count: {
       comments: 0
     }
-  }), [title, content, excerpt, featuredImageUrl, categoryId, categories, authorName, createdAt])
+  }), [title, content, excerpt, featuredImageUrl, categoryId, categories, authorName, createdAt, status, publishedAt])
   
   // Clases de contenedor según viewport
   const containerClass = viewport === 'mobile' ? 'max-w-sm' : 
