@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
   const userRole = token?.role as string || ""
 
   // Public routes (no authentication required)
-  const publicRoutes = ["/login", "/", "/register"]
+  const publicRoutes = ["/login", "/", "/register", "/about"]
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname) || 
                        nextUrl.pathname.startsWith("/blog")
   
