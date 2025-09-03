@@ -104,8 +104,8 @@ export async function updatePostAction(id: string, data: UpdatePostData) {
     if (post.status === 'PUBLISHED') {
       revalidatePath('/blog')
       revalidatePath(`/blog/${post.slug}`)
-      revalidatePath('/about')
     }
+    revalidatePath('/about')
     
     return { 
       success: true, 
