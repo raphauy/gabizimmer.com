@@ -175,7 +175,3 @@ Template (no borrar):
 ...
 </FEATURE>
 -->
-
-<FEATURE number="1" status="PENDING" prp-file-path="">
-
-</FEATURE>
