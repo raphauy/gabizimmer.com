@@ -44,3 +44,6 @@ next-env.d.ts
 CLAUDE.md
 
 /scripts_old/
+
+/.claude/
+/.agent-os/

@@ -176,15 +176,6 @@ Template (no borrar):
 </FEATURE>
 -->
 
-<FEATURE number="2" status="DONE" prp-file-path="/docs/PRPs/comments-moderation-prp.md">
-Implementar la parte de visualización y moderación de comentarios en /admin
-</FEATURE>
+<FEATURE number="1" status="PENDING" prp-file-path="">
 
-<FEATURE number="3" status="PRP-DONE" prp-file-path="/docs/PRPs/ai-comment-moderator-prp.md">
-Implementar un agente de IA que sea moderador de comentarios, utilizar generateObject de Vercel AI SDK (https://ai-sdk.dev/docs/ai-sdk-core/generating-structured-data) con un prompt que solicte un primer nivel de moderación intentando identificar si el comentario no es adecuado.
-Utilizar el modelo "openai/gpt-5" con el Vercel AI Gateway como el del chat, a diferencia que el del chat es el mini, aquí no usamos el mini, queremos el mejor modelo para que salga la mejor moderación.
-Si lo es, autorizar y publicar el comentario.
-Si no lo es, solicitar en el objeto de respuesta un breve argumento por el que fue baneado y enviar un email a Gabi Zimmer (gabi@gabizimmer.com) con copia a Rapha (rapha.uy@rapha.uy) notificando el comentario y el motivo del baneo del Agente de IA.
-Utilizar una plantilla como la del OTP (src/components/emails/otp-email.tsx)
-Agregar al modelo un campo para poner el nombre del usuario que aprobó el comentario o si el comentario es aprobado por el Agente de IA, poner el string "Agente IA". Si el usuario no tiene nombre poner el email. Este campo es solamente informativo y que aparezca en la lista de comentarios en la parte de /admin/comments.
 </FEATURE>

@@ -5,15 +5,54 @@ export function Footer() {
   
   return (
     <footer className="border-t bg-muted/50 mt-auto">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-3">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Columna 1: Sobre */}
           <div>
             <h3 className="font-semibold mb-2">Sobre Gabi Zimmer</h3>
             <p className="text-sm text-muted-foreground mb-3">
-              Comunicadora especializada en vinos uruguayos, compartiendo historias 
-              y conocimiento sobre la vitivinicultura de Uruguay.
+            Comunicadora, escritora, catadora, sommelière y educadora WSET. Fundadora y directora de Tinta, impulsa proyectos de educación, comunicación y enoturismo para difundir la cultura del vino a nivel internacional.
             </p>
+          </div>
+          
+          {/* Columna 2: Enlaces Rápidos */}
+          <div>
+            <h3 className="font-semibold mb-2">Enlaces Rápidos</h3>
+            <ul className="space-y-1 text-sm">
+              <li>
+                <Link href="/blog/uruguay" className="text-muted-foreground hover:text-wine-primary transition-colors">
+                  Uruguay
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/viajes" className="text-muted-foreground hover:text-wine-primary transition-colors">
+                  Viajes
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/noticias" className="text-muted-foreground hover:text-wine-primary transition-colors">
+                  Noticias
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/opinion" className="text-muted-foreground hover:text-wine-primary transition-colors">
+                  Opinión
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Columna 3: Newsletter */}
+          <div className="flex flex-col justify-between">
+            <div>
+              <h3 className="font-semibold mb-2">Newsletter</h3>
+              <p className="text-sm text-muted-foreground mb-2">
+                Suscríbete para recibir las últimas novedades.
+              </p>
+              <p className="text-xs text-muted-foreground italic">
+                Próximamente disponible
+              </p>
+            </div>
             <div className="flex gap-4">
               <a 
                 href="https://instagram.com/gabizimmer__" 
@@ -50,48 +89,10 @@ export function Footer() {
               </a>
             </div>
           </div>
-          
-          {/* Columna 2: Enlaces Rápidos */}
-          <div>
-            <h3 className="font-semibold mb-2">Enlaces Rápidos</h3>
-            <ul className="space-y-1 text-sm">
-              <li>
-                <Link href="/blog/uruguay" className="text-muted-foreground hover:text-wine-primary transition-colors">
-                  Uruguay
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog/viajes" className="text-muted-foreground hover:text-wine-primary transition-colors">
-                  Viajes
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog/noticias" className="text-muted-foreground hover:text-wine-primary transition-colors">
-                  Noticias
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog/opinion" className="text-muted-foreground hover:text-wine-primary transition-colors">
-                  Opinión
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Columna 3: Newsletter */}
-          <div>
-            <h3 className="font-semibold mb-2">Newsletter</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              Suscríbete para recibir las últimas novedades sobre vinos uruguayos.
-            </p>
-            <p className="text-xs text-muted-foreground italic">
-              Próximamente disponible
-            </p>
-          </div>
         </div>
         
         {/* Copyright */}
-        <div className="mt-4 pt-4 border-t text-center text-sm text-muted-foreground">
+        <div className="mt-3 pt-3 border-t text-center text-sm text-muted-foreground">
           <p>© {currentYear} Gabi Zimmer. Todos los derechos reservados.</p>
         </div>
       </div>
