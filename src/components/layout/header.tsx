@@ -18,7 +18,8 @@ export function Header() {
   const navItems = [
     { href: '/', label: 'Inicio' },
     { href: '/blog', label: 'Blog' },
-    { href: '/about', label: 'Sobre Gabi' }
+    { href: '/chat', label: 'Chat' },
+    { href: '/about', label: 'Sobre Gabi' },
   ]
   
   return (

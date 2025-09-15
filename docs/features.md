@@ -175,3 +175,20 @@ Template (no borrar):
 ...
 </FEATURE>
 -->
+
+<FEATURE number="1" status="COMPLETED" prp-file-path="/docs/PRPs/home-page-redesign-prp.md">
+Cambiar la home page para que tenga una foto de Gabi y un texto sobre ella:
+public/gabi.jpg
+Texto:
+"Gabi Zimmer es comunicadora, sommelière y educadora certificada WSET, con más de una década de experiencia en el mundo del vino. Fundó Tinta, agencia especializada en marketing digital y comunicación para bodegas, y Tinta Academy, la primera escuela en Uruguay aprobada por WSET, que acerca cualificaciones internacionales a la región.
+
+En su recorrido, ha combinado formación académica en Londres con una amplia experiencia internacional, participando como jurado en concursos, desarrollando proyectos para productores de distintos países y liderando iniciativas que buscan tender puentes entre el vino, la educación y la cultura.
+
+Actualmente, Gabi es catadora de Tim Atkin MW para Uruguay y Brasil; dirige proyectos de comunicación y enoturismo en América del Sur, trabajando junto a bodegas, instituciones y referentes del sector. Su misión es clara: dar visibilidad a las historias del vino, reducir la brecha digital y abrir nuevas oportunidades para productores y profesionales."
+
+Debajo de ese texto quiero mostrar algunos featured posts del blog
+
+La actual home page tiene un chat, quiero conservarlo pero en un route a parte (/chat) y que haya una entrada en el menú para acceder al chat.
+
+
+</FEATURE>
