@@ -19,7 +19,6 @@ export function Header() {
     { href: '/', label: 'Inicio' },
     { href: '/blog', label: 'Blog' },
     { href: '/chat', label: 'Chat' },
-    { href: '/about', label: 'Sobre Gabi' },
   ]
   
   return (
